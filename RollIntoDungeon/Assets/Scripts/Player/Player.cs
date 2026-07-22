@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     // 애니메이터를 인스펙터에서 직접 끌어다(드래그 앤 드롭) 연결할 수 있게 열어둡니다.
     [SerializeField] private Animator animator;
 
+
+    private Enemy currentTarget;
+
     void Start()
     {
         // 게임 시작 시 체력 초기화
@@ -50,9 +53,18 @@ public class Player : MonoBehaviour
     {
         Debug.Log($"[Player] 적에게 {currentAtk}의 데미지로 공격!");
 
+        currentTarget = target;
         if (animator != null) animator.SetTrigger("Attack");
 
         target.TakeDamage(currentAtk);
+    }
+
+    public void OnAttackImpact()
+    {
+        if (currentTarget != null && !currentTarget.IsDead)
+        {
+            currentTarget.TakeDamage(currentAtk); 
+        }
     }
 
     /// <summary>
