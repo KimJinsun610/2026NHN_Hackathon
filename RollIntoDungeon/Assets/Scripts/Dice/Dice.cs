@@ -51,15 +51,20 @@ public class Dice : MonoBehaviour
         drop.Drop();
     }
 
-    // DiceSelector가 클릭 시 호출. 멈춘 상태(Settled)에서만 고정/해제 가능.
-    public void ToggleFix()
+    // DiceManager.TryToggleFix()가 개수 제한을 통과시킨 뒤에 호출.
+    // 멈춘 상태(Settled)에서만 고정/해제 가능. 성공 여부를 반환한다.
+    public bool SetFixed(bool fixedState)
     {
-        if (State != DiceState.Settled) return;
+        if (State != DiceState.Settled) return false;
+        if (IsFixed == fixedState) return true;
 
-        IsFixed = !IsFixed;
-        rb.isKinematic = IsFixed; // 고정된 주사위는 다른 주사위 리롤에 영향받지 않도록 물리 정지
-        OnFixedChanged?.Invoke(IsFixed);
+        IsFixed = fixedState;
+        rb.isKinematic = fixedState; // 고정된 주사위는 다른 주사위 리롤에 영향받지 않도록 물리 정지
+        OnFixedChanged?.Invoke(fixedState);
+        return true;
     }
+
+    public bool ToggleFix() => SetFixed(!IsFixed);
 
     // 새 라운드 시작 시 DiceManager가 전체 주사위에 대해 호출
     public void ResetFix()

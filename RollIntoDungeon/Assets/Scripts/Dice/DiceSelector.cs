@@ -7,6 +7,7 @@ public class DiceSelector : MonoBehaviour
     [SerializeField] private Camera targetCamera;
     [SerializeField] private LayerMask diceLayer;
     [SerializeField] private float maxRayDistance = 100f;
+    [SerializeField] private DiceManager diceManager;
 
     void Update()
     {
@@ -18,7 +19,7 @@ public class DiceSelector : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, maxRayDistance, diceLayer))
         {
             if (hit.collider.TryGetComponent<Dice>(out var dice))
-                dice.ToggleFix();
+                diceManager.TryToggleFix(dice);
         }
     }
 }
