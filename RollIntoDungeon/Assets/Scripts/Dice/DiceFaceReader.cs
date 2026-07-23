@@ -32,6 +32,9 @@ public class DiceFaceReader : MonoBehaviour
     private Rigidbody rb;
     private bool hasReportedResult;
 
+    // 주사위가 멈춰서 결과가 확정되었을 때 발행 (Dice.cs가 구독)
+    public event Action<DiceFace> OnSettled;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,6 +49,7 @@ public class DiceFaceReader : MonoBehaviour
                 hasReportedResult = true;
                 DiceFace result = GetTopFace();
                 Debug.Log($"{name} 결과: {result.faceType} {result.value}");
+                OnSettled?.Invoke(result);
             }
         }
         else

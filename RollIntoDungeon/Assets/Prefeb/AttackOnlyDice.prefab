@@ -15,7 +15,9 @@ GameObject:
   - component: {fileID: 1094365594370906830}
   - component: {fileID: 6187184099245047684}
   - component: {fileID: 5445121333749326806}
-  m_Layer: 0
+  - component: {fileID: 2754678327933939035}
+  - component: {fileID: 4316406099317625664}
+  m_Layer: 6
   m_Name: AttackOnlyDice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,3 +189,28 @@ MonoBehaviour:
   - localNormal: {x: 0, y: 0, z: -1}
     faceType: 0
     value: 6
+--- !u!114 &2754678327933939035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444664599056805152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc391b6d1d8b6fd46a5e4a1f9602455b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DiceView
+  fixedTintColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+--- !u!114 &4316406099317625664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444664599056805152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340a4039cac1d6045b4825c72e8cda15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Dice

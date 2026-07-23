@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class DiceDrop : MonoBehaviour
 {
@@ -13,15 +12,8 @@ public class DiceDrop : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
-    {
-        if (Keyboard.current.rKey.wasPressedThisFrame)
-        {
-            Drop();
-        }
-    }
-
-    void Drop()
+    // Dice.cs가 굴리기를 트리거할 때 호출 (개별 R키 테스트는 DiceManager로 이동)
+    public void Drop()
     {
         transform.position = dropPoint.position;
         transform.rotation = Random.rotation;
