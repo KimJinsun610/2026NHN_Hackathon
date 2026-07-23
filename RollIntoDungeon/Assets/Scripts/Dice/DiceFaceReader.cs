@@ -4,22 +4,29 @@ using System;
 [RequireComponent(typeof(Rigidbody))]
 public class DiceFaceReader : MonoBehaviour
 {
+    public enum DiceFaceType
+    {
+        Attack,
+        Defense
+    }
+
     [Serializable]
     public struct DiceFace
     {
-        public Vector3 localNormal; // 이 면이 위를 향할 때의 로컬 바깥쪽 방향
-        public int value;           // 이 면의 눈금 숫자
+        public Vector3 localNormal;   // 이 면이 위를 향할 때의 로컬 바깥쪽 방향
+        public DiceFaceType faceType; // 공격면 / 방어면
+        public int value;             // 이 면의 적용 값
     }
 
     [SerializeField]
     private DiceFace[] faces = new DiceFace[]
     {
-        new DiceFace { localNormal = Vector3.up,      value = 1 },
-        new DiceFace { localNormal = Vector3.down,    value = 6 },
-        new DiceFace { localNormal = Vector3.right,   value = 2 },
-        new DiceFace { localNormal = Vector3.left,    value = 5 },
-        new DiceFace { localNormal = Vector3.forward, value = 3 },
-        new DiceFace { localNormal = Vector3.back,    value = 4 },
+        new DiceFace { localNormal = Vector3.up,      faceType = DiceFaceType.Attack,  value = 1 },
+        new DiceFace { localNormal = Vector3.down,    faceType = DiceFaceType.Defense, value = 6 },
+        new DiceFace { localNormal = Vector3.right,   faceType = DiceFaceType.Attack,  value = 2 },
+        new DiceFace { localNormal = Vector3.left,    faceType = DiceFaceType.Defense, value = 5 },
+        new DiceFace { localNormal = Vector3.forward, faceType = DiceFaceType.Attack,  value = 3 },
+        new DiceFace { localNormal = Vector3.back,    faceType = DiceFaceType.Defense, value = 4 },
     };
 
     private Rigidbody rb;
@@ -37,7 +44,8 @@ public class DiceFaceReader : MonoBehaviour
             if (!hasReportedResult)
             {
                 hasReportedResult = true;
-                Debug.Log($"{name} 결과: {GetTopFaceValue()}");
+                DiceFace result = GetTopFace();
+                Debug.Log($"{name} 결과: {result.faceType} {result.value}");
             }
         }
         else
@@ -46,9 +54,10 @@ public class DiceFaceReader : MonoBehaviour
         }
     }
 
-    public int GetTopFaceValue()
+    // 현재 위를 향하고 있는 면(타입 + 값)을 판단해서 반환
+    public DiceFace GetTopFace()
     {
-        int bestValue = -1;
+        DiceFace bestFace = faces[0];
         float bestDot = float.MinValue;
 
         foreach (var face in faces)
@@ -59,12 +68,16 @@ public class DiceFaceReader : MonoBehaviour
             if (dot > bestDot)
             {
                 bestDot = dot;
-                bestValue = face.value;
+                bestFace = face;
             }
         }
 
-        return bestValue;
+        return bestFace;
     }
+
+    public int GetTopFaceValue() => GetTopFace().value;
+
+    public DiceFaceType GetTopFaceType() => GetTopFace().faceType;
 
     [ContextMenu("현재 위를 보는 로컬 방향 출력 (캘리브레이션용)")]
     private void LogCurrentUpLocalDirection()
