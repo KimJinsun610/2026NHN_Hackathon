@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
 
     public bool IsDead => currentHp <= 0;
 
+    [Header("Visuals")]
+    // 인스펙터에서 연결해 줄 빨간색 테두리(또는 마커) 게임 오브젝트입니다.
+    [SerializeField] private GameObject targetIndicator;
+
     private Player currentTarget;
 
     // virtual 키워드를 붙여두면 자식 클래스(Boss)에서 이 함수를 덮어쓰기(Override) 할 수 있습니다.
@@ -80,5 +84,14 @@ public class Enemy : MonoBehaviour
         if (animator != null) animator.SetBool("IsDead", true);
 
         // TODO: BattleManager에 적 사망 이벤트를 전달하여 턴 종료 및 보상 처리
+    }
+
+
+    public void SetTargeted(bool isTargeted)
+    {
+        if (targetIndicator != null)
+        {
+            targetIndicator.SetActive(isTargeted);
+        }
     }
 }
