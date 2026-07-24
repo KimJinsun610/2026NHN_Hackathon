@@ -22,6 +22,9 @@ public class Enemy : MonoBehaviour
 
     private Player currentTarget;
 
+    [Header("UI")]
+    [SerializeField] private HealthBar healthBar;
+
     // virtual 키워드를 붙여두면 자식 클래스(Boss)에서 이 함수를 덮어쓰기(Override) 할 수 있습니다.
     protected virtual void Start()
     {
@@ -30,6 +33,12 @@ public class Enemy : MonoBehaviour
         if (animator == null)
         {
             animator = GetComponentInChildren<Animator>();
+        }
+
+        // 체력바 초기화
+        if (healthBar != null) 
+        {
+            healthBar.UpdateHP(currentHp, maxHp);
         }
     }
 
@@ -49,6 +58,7 @@ public class Enemy : MonoBehaviour
     {
         if (currentTarget != null && !currentTarget.IsDead)
         {
+            Debug.Log("플레이어에게 피해 입힘");
             currentTarget.TakeDamage(attackPower); 
         }
     }
@@ -64,6 +74,12 @@ public class Enemy : MonoBehaviour
         currentHp -= actualDamage;
 
         Debug.Log($"[Enemy] {actualDamage}의 피해를 입음. (남은 체력: {currentHp})");
+
+        // 데미지를 입을 때마다 체력바 업데이트!
+        if (healthBar != null) 
+        {
+            healthBar.UpdateHP(currentHp, maxHp);
+        }
 
         if (animator != null) animator.SetTrigger("Hit");
 

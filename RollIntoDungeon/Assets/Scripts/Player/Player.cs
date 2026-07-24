@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
 
     private Enemy currentTarget;
 
+    [Header("UI")]
+    [SerializeField] private HealthBar healthBar;
+
     void Start()
     {
         // 게임 시작 시 체력 초기화
@@ -31,6 +34,12 @@ public class Player : MonoBehaviour
         if (animator == null)
         {
             animator = GetComponentInChildren<Animator>();
+        }
+
+        // 체력바 초기화
+        if (healthBar != null) 
+        {
+            healthBar.UpdateHP(currentHp, maxHp);
         }
     }
 
@@ -56,7 +65,6 @@ public class Player : MonoBehaviour
         currentTarget = target;
         if (animator != null) animator.SetTrigger("Attack");
 
-        target.TakeDamage(currentAtk);
     }
 
     public void OnAttackImpact()
@@ -77,6 +85,12 @@ public class Player : MonoBehaviour
         currentHp -= actualDamage;
 
         Debug.Log($"[Player] {actualDamage}의 실제 피해를 입음. (남은 체력: {currentHp})");
+
+        // 데미지를 입을 때마다 체력바 업데이트!
+        if (healthBar != null) 
+        {
+            healthBar.UpdateHP(currentHp, maxHp);
+        }
 
         if (animator != null) animator.SetTrigger("Hit");
 
