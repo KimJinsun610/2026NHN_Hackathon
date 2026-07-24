@@ -72,6 +72,8 @@ public class Enemy : MonoBehaviour
         // 방어력을 차감한 실제 데미지 계산 (최소 데미지는 0)
         int actualDamage = Mathf.Max(0, incomingDamage - defensePower);
         currentHp -= actualDamage;
+        if (currentHp < 0) currentHp = 0;
+        
 
         Debug.Log($"[Enemy] {actualDamage}의 피해를 입음. (남은 체력: {currentHp})");
 
@@ -94,12 +96,17 @@ public class Enemy : MonoBehaviour
     /// </summary>
     protected virtual void Die()
     {
-        currentHp = 0;
         Debug.Log("[Enemy] 쓰러졌습니다.");
 
         if (animator != null) animator.SetBool("IsDead", true);
 
         // TODO: BattleManager에 적 사망 이벤트를 전달하여 턴 종료 및 보상 처리
+    }
+
+    public void OnDeathAnimationComplete()
+    {
+        Destroy(gameObject);
+        // (만약 파괴하지 않고 투명하게 숨기기만 하고 싶다면 gameObject.SetActive(false); 를 사용하셔도 됩니다.)
     }
 
 

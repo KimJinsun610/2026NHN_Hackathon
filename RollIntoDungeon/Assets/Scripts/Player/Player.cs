@@ -83,6 +83,8 @@ public class Player : MonoBehaviour
         // 방어력을 차감한 실제 데미지 계산 (최소 데미지는 0)
         int actualDamage = Mathf.Max(0, incomingDamage - currentDef);
         currentHp -= actualDamage;
+        if (currentHp < 0) currentHp = 0;
+
 
         Debug.Log($"[Player] {actualDamage}의 실제 피해를 입음. (남은 체력: {currentHp})");
 
@@ -105,7 +107,6 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Die()
     {
-        currentHp = 0;
         Debug.Log("[Player] 사망했습니다.");
 
         if (animator != null) animator.SetBool("IsDead", true);

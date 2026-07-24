@@ -12,4 +12,12 @@ public class EnemyVisualEventBridge : MonoBehaviour
             enemyBody.OnAttackImpact();
         }
     }
+
+    public void TriggerDeathComplete()
+    {
+        if (enemyBody != null)
+        {
+            enemyBody.OnDeathAnimationComplete();
+        }
+    }
 }
