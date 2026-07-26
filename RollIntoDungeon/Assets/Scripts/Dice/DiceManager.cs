@@ -2,13 +2,11 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.InputSystem;
 
 // 여러 Dice를 묶어서 굴리기/라운드 리셋을 오케스트레이션한다.
 public class DiceManager : MonoBehaviour
 {
     [SerializeField] private List<Dice> dices = new();
-    [SerializeField] private bool rollOnRKeyForTest = true; // 디버깅용, 실제 흐름 연결 후 꺼도 됨
     [SerializeField] private int maxFixedCount = 3; // 동시에 고정 가능한 최대 개수
 
     // 확정(Settled)된 주사위들의 공격/방어 합산값. UI와 전투 시스템이 동일한 값을 공유한다.
@@ -25,14 +23,6 @@ public class DiceManager : MonoBehaviour
     {
         foreach (var dice in dices)
             dice.OnStateChanged -= HandleDiceStateChanged;
-    }
-
-    void Update()
-    {
-        if (rollOnRKeyForTest && Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
-        {
-            RollUnfixed();
-        }
     }
 
     void HandleDiceStateChanged(Dice.DiceState _) => RecalculateTotals();
@@ -74,6 +64,17 @@ public class DiceManager : MonoBehaviour
     public bool AllSettled()
     {
         return dices.Count > 0 && dices.All(d => d.State == Dice.DiceState.Settled);
+    }
+
+    public bool AnyRolling => dices.Any(d => d.State == Dice.DiceState.Rolling);
+
+    // 확정된 모든 주사위의 눈금 값이 전부 동일한지 (강공격 판정용)
+    public bool AllSameValue()
+    {
+        if (!AllSettled()) return false;
+
+        int first = dices[0].LastResult.value;
+        return dices.All(d => d.LastResult.value == first);
     }
 
     public IEnumerable<Dice> FixedDices => dices.Where(d => d.IsFixed);

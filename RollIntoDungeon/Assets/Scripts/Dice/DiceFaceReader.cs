@@ -48,7 +48,6 @@ public class DiceFaceReader : MonoBehaviour
             {
                 hasReportedResult = true;
                 DiceFace result = GetTopFace();
-                Debug.Log($"{name} 결과: {result.faceType} {result.value}");
                 OnSettled?.Invoke(result);
             }
         }
