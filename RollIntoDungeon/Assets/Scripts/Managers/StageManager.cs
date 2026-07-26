@@ -29,8 +29,8 @@ public class StageManager : MonoBehaviour
             if (enemyPrefabsToSpawn[i] == null || spawnPoints.Length <= i || spawnPoints[i] == null)
                 continue;
 
-            Enemy spawnedEnemy = Instantiate(enemyPrefabsToSpawn[i], spawnPoints[i].position, Quaternion.identity);
-            
+            Enemy spawnedEnemy = Instantiate(enemyPrefabsToSpawn[i], spawnPoints[i].position, spawnPoints[i].rotation);
+
             // 오브젝트 이름이 헷갈리지 않게 번호를 달아줍니다. (예: Slime_0, Slime_1)
             spawnedEnemy.name = enemyPrefabsToSpawn[i].name + "_" + i;
             

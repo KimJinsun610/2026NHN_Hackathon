@@ -55,11 +55,11 @@ public class BattleManager : MonoBehaviour
         // 마우스 왼쪽 버튼을 이번 프레임에 막 눌렀다면
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            // 화면상의 마우스 위치를 실제 2D 게임 공간의 좌표로 변환합니다.
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            
-            // 마우스 위치에서 안쪽으로 광선(Ray)을 쏴서 뭔가 부딪히는지 검사합니다.
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+            // 카메라(Perspective 포함)에서 마우스 위치를 지나는 3D 광선을 계산합니다.
+            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            // 이 광선이 2D 콜라이더와 만나는 지점을 검사합니다. (퍼스펙티브/기울어진 카메라에서도 정확함)
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
 
             if (hit.collider != null)
             {

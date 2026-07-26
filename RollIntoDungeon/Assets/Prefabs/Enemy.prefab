@@ -592,6 +592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
   fillImage: {fileID: 3398289522480177587}
   hpText: {fileID: 2665317235620863066}
+  lerpSpeed: 5
 --- !u!1 &8062143859501054141
 GameObject:
   m_ObjectHideFlags: 0
