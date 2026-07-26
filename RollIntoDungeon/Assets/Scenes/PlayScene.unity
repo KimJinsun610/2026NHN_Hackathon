@@ -648,11 +648,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   enemyPrefabsToSpawn:
-  - {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
-  - {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+  - {fileID: 4437763298058279167, guid: 931f26b9f9dc468469b5eca299677a1c, type: 3}
   spawnPoints:
   - {fileID: 429815034}
-  - {fileID: 1704614425}
   battleManager: {fileID: 132996472}
 --- !u!4 &934619818
 Transform:
