@@ -11,6 +11,9 @@ public class DiceTotalsView : MonoBehaviour
     [SerializeField] private TMP_Text defenseText;
     [SerializeField] private float countUpInterval = 0.05f; // 1 증가당 대기 시간
 
+    [SerializeField] private BattleManager battleManager;
+    [SerializeField] private TMP_Text turnValueText;
+
     private CountUpStat attackStat;
     private CountUpStat defenseStat;
 
@@ -23,6 +26,8 @@ public class DiceTotalsView : MonoBehaviour
     void OnEnable()
     {
         diceManager.OnTotalsChanged += HandleTotalsChanged;
+        battleManager.OnTurnChanged += HandleTurnChanged;
+
         // 최초 진입(씬 재진입 등) 시에는 카운트업 없이 즉시 동기화
         attackStat.SetImmediate(diceManager.CurrentTotals.Attack);
         defenseStat.SetImmediate(diceManager.CurrentTotals.Defense);
@@ -31,12 +36,21 @@ public class DiceTotalsView : MonoBehaviour
     void OnDisable()
     {
         diceManager.OnTotalsChanged -= HandleTotalsChanged;
+        battleManager.OnTurnChanged -= HandleTurnChanged;
     }
 
     void HandleTotalsChanged(DiceTotals totals)
     {
         attackStat.AnimateTo(totals.Attack, countUpInterval);
         defenseStat.AnimateTo(totals.Defense, countUpInterval);
+    }
+
+    private void HandleTurnChanged(int currentTurn)
+    {
+        if (turnValueText != null)
+        {
+            turnValueText.text = currentTurn.ToString();
+        }
     }
 
     // 텍스트 하나에 대한 카운트업 상태를 캡슐화 (공격/방어 각각 독립적인 코루틴을 가짐)

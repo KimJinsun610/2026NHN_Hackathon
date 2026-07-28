@@ -66,11 +66,19 @@ public class DiceRoundController : MonoBehaviour
         Debug.Log($"[공격 확정] Attack={result.Attack}, Defense={result.Defense}, Critical={result.IsCritical}");
         OnAttackConfirmed?.Invoke(result);
 
+        rerollButton.interactable = false;
+        attackButton.interactable = false;
+
+    }
+
+    public void PrepareNextRound()
+    {
         RerollsRemaining = maxRerollCount;
         OnRerollsRemainingChanged?.Invoke(RerollsRemaining);
         diceManager.StartNewRound(); // 고정 해제 등 다음 턴 준비
         RefreshButtons();
     }
+
 
     void RefreshButtons()
     {

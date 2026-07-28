@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 using UnityEngine.InputSystem;
 
 public class BattleManager : MonoBehaviour
@@ -8,12 +9,34 @@ public class BattleManager : MonoBehaviour
     [Header("Characters")]
     [SerializeField] private Player player;
 
+    [Header("Dice System")] // 다이스 컨트롤러 연결을 위한 변수 추가
+    [SerializeField] private DiceRoundController diceController;
+
     private List<Enemy> enemyList = new List<Enemy>();
     private bool isTurnExecuting = false;
 
-    // 새로 추가된 변수: 사용자가 마우스로 클릭해서 선택한 현재 타겟
     private Enemy selectedTarget = null;
 
+    [Header("Turn System")]
+    public int CurrentTurn { get; private set; } = 1; // 현재 턴 (기본값 1)
+    public event Action<int> OnTurnChanged; // 턴이 바뀔 때 발생할 이벤트
+
+    private void OnEnable()
+    {
+        if (diceController != null)
+        {
+            diceController.OnAttackConfirmed += OnDiceAttackConfirmed;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (diceController != null)
+        {
+            diceController.OnAttackConfirmed -= OnDiceAttackConfirmed;
+        }
+    }
+    
     public void InitializeBattle(List<Enemy> spawnedEnemies)
     {
         enemyList = spawnedEnemies;
@@ -21,6 +44,9 @@ public class BattleManager : MonoBehaviour
         
         // 처음 세팅될 때는 살아있는 첫 번째 적을 기본 타겟으로 잡아줍니다.
         selectedTarget = enemyList.Find(e => !e.IsDead);
+
+        CurrentTurn = 1;
+        OnTurnChanged?.Invoke(CurrentTurn);
     }
 
     void Update()
@@ -34,39 +60,21 @@ public class BattleManager : MonoBehaviour
         // 2. 선택된 타겟 머리 위에만 화살표를 띄우는 로직
         UpdateTargetIndicator();
 
-        bool hasAliveEnemy = enemyList.Exists(e => !e.IsDead);
-
-        // 스페이스바를 누르면 전투 시작
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && !player.IsDead && hasAliveEnemy)
-        {
-            // 혹시라도 타겟이 죽어있거나 없다면, 살아있는 다른 적으로 강제 교체합니다.
-            if (selectedTarget == null || selectedTarget.IsDead)
-            {
-                selectedTarget = enemyList.Find(e => !e.IsDead);
-            }
-
-            StartCoroutine(ExecuteTurn());
-        }
     }
 
     // 마우스 클릭을 감지하여 타겟을 바꾸는 함수
     private void HandleMouseClickTargeting()
     {
-        // 마우스 왼쪽 버튼을 이번 프레임에 막 눌렀다면
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            // 카메라(Perspective 포함)에서 마우스 위치를 지나는 3D 광선을 계산합니다.
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-            // 이 광선이 2D 콜라이더와 만나는 지점을 검사합니다. (퍼스펙티브/기울어진 카메라에서도 정확함)
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
 
             if (hit.collider != null)
             {
-                // 부딪힌 물체에 Enemy 컴포넌트가 있는지 확인합니다.
                 Enemy clickedEnemy = hit.collider.GetComponent<Enemy>();
                 
-                // 클릭한 대상이 적(Enemy)이 맞고, 아직 살아있다면 타겟으로 확정!
                 if (clickedEnemy != null && !clickedEnemy.IsDead)
                 {
                     selectedTarget = clickedEnemy;
@@ -79,7 +87,6 @@ public class BattleManager : MonoBehaviour
     // 화살표(타겟 마커)를 갱신하는 함수
     private void UpdateTargetIndicator()
     {
-        // 선택된 타겟이 방금 죽었다면, 다음 살아있는 적으로 화살표를 넘겨줍니다.
         if (selectedTarget == null || selectedTarget.IsDead)
         {
             selectedTarget = enemyList.Find(e => !e.IsDead);
@@ -89,18 +96,36 @@ public class BattleManager : MonoBehaviour
         {
             if (enemy != null)
             {
-                // 현재 선택된 타겟(selectedTarget)과 일치하는 녀석만 화살표를 켜줍니다.
                 enemy.SetTargeted(enemy == selectedTarget);
             }
+        }
+    }
+
+    // 다이스 컨트롤러에서 이벤트가 발생하면 자동으로 호출되는 함수
+    private void OnDiceAttackConfirmed(AttackResult result)
+    {
+        bool hasAliveEnemy = enemyList.Exists(e => !e.IsDead);
+
+        // 턴이 진행 중이 아니고, 플레이어가 살아있으며, 적이 남아있을 때만 턴 시작
+        if (!isTurnExecuting && !player.IsDead && hasAliveEnemy)
+        {
+            if (selectedTarget == null || selectedTarget.IsDead)
+            {
+                selectedTarget = enemyList.Find(e => !e.IsDead);
+            }
+
+            StartCoroutine(ExecuteTurn());
         }
     }
 
     private IEnumerator ExecuteTurn()
     {
         isTurnExecuting = true;
+
+        yield return null;
+
         Debug.Log("--- 턴 시작 ---");
 
-        player.CalculateTurnStats();
 
         // 선택된 타겟을 공격합니다!
         if (selectedTarget != null && !selectedTarget.IsDead)
@@ -130,6 +155,14 @@ public class BattleManager : MonoBehaviour
                     yield break;
                 }
             }
+        }
+
+        CurrentTurn++; 
+        OnTurnChanged?.Invoke(CurrentTurn);
+
+        if (diceController != null)
+        {
+            diceController.PrepareNextRound();
         }
 
         isTurnExecuting = false;

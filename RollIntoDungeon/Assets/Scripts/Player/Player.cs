@@ -11,9 +11,10 @@ public class Player : MonoBehaviour
 
     public bool IsDead => currentHp <= 0;
 
-    // 턴마다 갱신되는 스탯. (프로퍼티는 기본적으로 인스펙터에 노출되지 않으며, 외부에서는 읽기만 가능합니다.)
-    public int currentAtk { get; private set; }
-    public int currentDef { get; private set; }
+    // 플레이어의 전투 스탯 변수
+    private int currentAttack;
+    private int currentDefense;
+    private bool IsCriticalAttack = false;
 
     [Header("Components")]
     // 애니메이터를 인스펙터에서 직접 끌어다(드래그 앤 드롭) 연결할 수 있게 열어둡니다.
@@ -25,6 +26,26 @@ public class Player : MonoBehaviour
     [Header("UI")]
     [SerializeField] private HealthBar healthBar;
 
+    [SerializeField] private DiceRoundController diceController;
+
+    // 1. 컴포넌트가 켜질 때 이벤트를 구독(연결)합니다.
+    private void OnEnable()
+    {
+        if (diceController != null)
+        {
+            diceController.OnAttackConfirmed += ApplyDiceResult;
+        }
+    }
+
+    // 2. 컴포넌트가 꺼질 때 이벤트를 해제합니다. (메모리 누수 방지용)
+    private void OnDisable()
+    {
+        if (diceController != null)
+        {
+            diceController.OnAttackConfirmed -= ApplyDiceResult;
+        }
+    }
+    
     void Start()
     {
         // 게임 시작 시 체력 초기화
@@ -44,26 +65,20 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// 턴 시작 시 호출되어 이번 턴의 공격력과 방어력을 세팅합니다.
-    /// </summary>
-    public void CalculateTurnStats()
-    {
-        // 🚧 [더미 데이터 구간] 주사위 로직 완성 전까지 고정값 사용
-        currentAtk = 10;
-        currentDef = 5;
-
-        Debug.Log($"[Player] 턴 스탯 갱신 - 공격력: {currentAtk}, 방어력: {currentDef}");
-    }
-
-    /// <summary>
     /// 적을 공격할 때 호출하는 함수
     /// </summary>
     public void Attack(Enemy target)
     {
-        Debug.Log($"[Player] 적에게 {currentAtk}의 데미지로 공격!");
+        Debug.Log($"[Player] 적에게 {currentAttack}의 데미지로 공격!");
 
         currentTarget = target;
-        if (animator != null) animator.SetTrigger("Attack");
+        if (animator != null)
+        {
+            if(IsCriticalAttack)
+                animator.SetTrigger("CriticalAttack");
+            else
+                animator.SetTrigger("Attack");
+        }
 
     }
 
@@ -71,7 +86,7 @@ public class Player : MonoBehaviour
     {
         if (currentTarget != null && !currentTarget.IsDead)
         {
-            currentTarget.TakeDamage(currentAtk); 
+            currentTarget.TakeDamage(currentAttack); 
         }
     }
 
@@ -81,7 +96,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int incomingDamage)
     {
         // 방어력을 차감한 실제 데미지 계산 (최소 데미지는 0)
-        int actualDamage = Mathf.Max(0, incomingDamage - currentDef);
+        int actualDamage = Mathf.Max(0, incomingDamage - currentDefense);
         currentHp -= actualDamage;
         if (currentHp < 0) currentHp = 0;
 
@@ -110,5 +125,22 @@ public class Player : MonoBehaviour
         Debug.Log("[Player] 사망했습니다.");
 
         if (animator != null) animator.SetBool("IsDead", true);
+    }
+
+
+    private void ApplyDiceResult(AttackResult result)
+    {
+        // 넘겨받은 result 값으로 플레이어의 스탯을 갱신합니다.
+        currentAttack = result.Attack;
+        currentDefense = result.Defense;
+        IsCriticalAttack = result.IsCritical;
+
+        Debug.Log($"[Player] 주사위 스탯 장전 완료! 공격력: {currentAttack}, 방어력: {currentDefense}");
+
+        if (result.IsCritical)
+        {
+            Debug.Log("[Player] 크리티컬 공격 준비!");
+        }
+        
     }
 }
