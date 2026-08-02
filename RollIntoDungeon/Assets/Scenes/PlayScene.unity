@@ -800,6 +800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 607815769}
   - component: {fileID: 607815768}
+  - component: {fileID: 607815770}
   m_Layer: 0
   m_Name: DiceRoundController
   m_TagString: Untagged
@@ -824,6 +825,7 @@ MonoBehaviour:
   attackButton: {fileID: 2021728404}
   maxRerollCount: 3
   criticalMultiplier: 3
+  buttonClickSound: {fileID: 8300000, guid: c95c7baa3b4556f46a0d49a4855964ad, type: 3}
 --- !u!4 &607815769
 Transform:
   m_ObjectHideFlags: 0
@@ -839,6 +841,164 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &607815770
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607815767}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1.3
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1001 &648001641
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 18187436039974248, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: bgmClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7b203ba113e0307469dca4ce61b949fe, type: 3}
+    - target: {fileID: 3351524568453992729, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: m_Name
+      value: BGMTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954615980796913608, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.80425
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954615980796913608, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.215
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954615980796913608, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.16422
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954615980796913608, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954615980796913608, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954615980796913608, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954615980796913608, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954615980796913608, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954615980796913608, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954615980796913608, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2eed69670566be647b9aced39f706d37, type: 3}
 --- !u!1 &649507057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1324,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1087420072806352408, guid: 5708fc881d9ad5840a8698f978c589e6, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757718293684075733, guid: 5708fc881d9ad5840a8698f978c589e6, type: 3}
+      propertyPath: rollLoopClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a15c8ea66313ce643bcb5e2351b73464, type: 3}
+    - target: {fileID: 1757718293684075733, guid: 5708fc881d9ad5840a8698f978c589e6, type: 3}
+      propertyPath: impactClips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757718293684075733, guid: 5708fc881d9ad5840a8698f978c589e6, type: 3}
+      propertyPath: 'impactClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: a15c8ea66313ce643bcb5e2351b73464, type: 3}
+    - target: {fileID: 1757718293684075733, guid: 5708fc881d9ad5840a8698f978c589e6, type: 3}
+      propertyPath: 'impactClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: a938e2b0fda8ef64b8a4d68bb294a16b, type: 3}
+    - target: {fileID: 1757718293684075733, guid: 5708fc881d9ad5840a8698f978c589e6, type: 3}
+      propertyPath: 'impactClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e422039df48c639429548d4ae18309f2, type: 3}
     - target: {fileID: 3489296849605583927, guid: 5708fc881d9ad5840a8698f978c589e6, type: 3}
       propertyPath: m_Name
       value: AD_Dice
@@ -1945,6 +2129,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: AttackOnlyDice
       objectReference: {fileID: 0}
+    - target: {fileID: 8955155351665750702, guid: fdb0530f760909b43b0546a49cd5cd55, type: 3}
+      propertyPath: impactClips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955155351665750702, guid: fdb0530f760909b43b0546a49cd5cd55, type: 3}
+      propertyPath: 'impactClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: a15c8ea66313ce643bcb5e2351b73464, type: 3}
+    - target: {fileID: 8955155351665750702, guid: fdb0530f760909b43b0546a49cd5cd55, type: 3}
+      propertyPath: 'impactClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: a938e2b0fda8ef64b8a4d68bb294a16b, type: 3}
+    - target: {fileID: 8955155351665750702, guid: fdb0530f760909b43b0546a49cd5cd55, type: 3}
+      propertyPath: 'impactClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e422039df48c639429548d4ae18309f2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1973,6 +2173,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: DefenceOnlyDice
       objectReference: {fileID: 0}
+    - target: {fileID: 5467921761811069321, guid: 31d5e911949edf845b78b8b4bdd001cd, type: 3}
+      propertyPath: impactClips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467921761811069321, guid: 31d5e911949edf845b78b8b4bdd001cd, type: 3}
+      propertyPath: 'impactClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: a15c8ea66313ce643bcb5e2351b73464, type: 3}
+    - target: {fileID: 5467921761811069321, guid: 31d5e911949edf845b78b8b4bdd001cd, type: 3}
+      propertyPath: 'impactClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: a938e2b0fda8ef64b8a4d68bb294a16b, type: 3}
+    - target: {fileID: 5467921761811069321, guid: 31d5e911949edf845b78b8b4bdd001cd, type: 3}
+      propertyPath: 'impactClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e422039df48c639429548d4ae18309f2, type: 3}
     - target: {fileID: 6027157636524406640, guid: 31d5e911949edf845b78b8b4bdd001cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.91
@@ -2777,3 +2993,4 @@ SceneRoots:
   - {fileID: 429815034}
   - {fileID: 1704614425}
   - {fileID: 857124204}
+  - {fileID: 648001641}
