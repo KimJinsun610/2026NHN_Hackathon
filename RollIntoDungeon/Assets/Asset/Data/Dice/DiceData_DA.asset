@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c6eff744f10bd498e2e8d0030f8857, type: 3}
+  m_Name: DiceData_DA
+  m_EditorClassIdentifier: Assembly-CSharp::DiceData
+  diceId: Diace_DA
+  displayName: DADice
+  icon: {fileID: 21300000, guid: 260946c1ed0ae104c8930c3d48015f01, type: 3}
+  worldPrefab: {fileID: 3489296849605583927, guid: 3be4a4b42b790dc4d97ec024a5550f73, type: 3}
+  description: 
