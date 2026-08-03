@@ -16,4 +16,24 @@ MonoBehaviour:
   displayName: DADice
   icon: {fileID: 21300000, guid: 260946c1ed0ae104c8930c3d48015f01, type: 3}
   worldPrefab: {fileID: 3489296849605583927, guid: 3be4a4b42b790dc4d97ec024a5550f73, type: 3}
+  previewPrefab: {fileID: 9117152646185117810, guid: 45a1e6c399bd69c4d95fffc13cb3b274, type: 3}
   description: 
+  faces:
+  - image: {fileID: 21300000, guid: 86f99343f907f2145b5fbcf6b4aae92d, type: 3}
+    faceType: 0
+    value: 1
+  - image: {fileID: 21300000, guid: 87e0b9b3a1244d64e818d6b1e4993c0e, type: 3}
+    faceType: 1
+    value: 2
+  - image: {fileID: 21300000, guid: cb42b910978813e41bbc5c33aa05cf31, type: 3}
+    faceType: 0
+    value: 3
+  - image: {fileID: 21300000, guid: 8d3a97374224caf4d86e32d0e835126b, type: 3}
+    faceType: 1
+    value: 4
+  - image: {fileID: 21300000, guid: 2d31fcf6e4205c6419be353c265736dc, type: 3}
+    faceType: 0
+    value: 5
+  - image: {fileID: 21300000, guid: 2c8be6427d61bd440aa7e3dcf65aed46, type: 3}
+    faceType: 1
+    value: 6

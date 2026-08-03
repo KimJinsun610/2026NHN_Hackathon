@@ -13,7 +13,27 @@ MonoBehaviour:
   m_Name: DiceData_DefenceOnly
   m_EditorClassIdentifier: Assembly-CSharp::DiceData
   diceId: Dice_Defence
-  displayName: DefenceDice
+  displayName: DefenceOnly
   icon: {fileID: 21300000, guid: 1ddb516094a3250458cf31cc5d47c706, type: 3}
   worldPrefab: {fileID: 3489296849605583927, guid: 31d5e911949edf845b78b8b4bdd001cd, type: 3}
+  previewPrefab: {fileID: 9117152646185117810, guid: 6fecfa081d6741e4b985fda58681dbe7, type: 3}
   description: 
+  faces:
+  - image: {fileID: 21300000, guid: 2653f51f4818981498d0b53022aded83, type: 3}
+    faceType: 1
+    value: 1
+  - image: {fileID: 21300000, guid: 87e0b9b3a1244d64e818d6b1e4993c0e, type: 3}
+    faceType: 1
+    value: 2
+  - image: {fileID: 21300000, guid: 09133cb4abc2ad74aaec1b78b596870f, type: 3}
+    faceType: 1
+    value: 3
+  - image: {fileID: 21300000, guid: 8d3a97374224caf4d86e32d0e835126b, type: 3}
+    faceType: 1
+    value: 4
+  - image: {fileID: 21300000, guid: 32f4ba1f9c6d5db4785e5c8f45940dab, type: 3}
+    faceType: 1
+    value: 5
+  - image: {fileID: 21300000, guid: 2c8be6427d61bd440aa7e3dcf65aed46, type: 3}
+    faceType: 1
+    value: 6
