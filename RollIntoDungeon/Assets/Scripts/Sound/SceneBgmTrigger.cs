@@ -7,6 +7,7 @@ public class SceneBgmTrigger : MonoBehaviour
 
     void Start()
     {
+        BgmManager.Instance.SetVolume(1f); // 이전 씬(MainScene 등)에서 페이드아웃한 볼륨이 남아있지 않도록 새 씬 진입 시 항상 복귀
         BgmManager.Instance.PlayBgm(bgmClip);
     }
 }

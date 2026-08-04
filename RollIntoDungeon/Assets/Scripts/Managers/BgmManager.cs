@@ -31,4 +31,9 @@ public class BgmManager : MonoBehaviour
         audioSource.loop = loop;
         audioSource.Play();
     }
+
+    public float Volume => audioSource.volume;
+
+    // MainScene 페이드아웃처럼 볼륨을 직접 조절해야 하는 연출에서 사용.
+    public void SetVolume(float volume) => audioSource.volume = Mathf.Clamp01(volume);
 }
