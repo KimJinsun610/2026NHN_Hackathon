@@ -104,17 +104,28 @@ public class BattleManager : MonoBehaviour
     // 다이스 컨트롤러에서 이벤트가 발생하면 자동으로 호출되는 함수
     private void OnDiceAttackConfirmed(AttackResult result)
     {
+        Debug.Log("--- OnDiceAttackConfirmed ---");
         bool hasAliveEnemy = enemyList.Exists(e => !e.IsDead);
 
         // 턴이 진행 중이 아니고, 플레이어가 살아있으며, 적이 남아있을 때만 턴 시작
         if (!isTurnExecuting && !player.IsDead && hasAliveEnemy)
         {
+            Debug.Log("--- 조건 통과 ---");
             if (selectedTarget == null || selectedTarget.IsDead)
             {
                 selectedTarget = enemyList.Find(e => !e.IsDead);
             }
 
             StartCoroutine(ExecuteTurn());
+        }
+    }
+
+    public void AddSpawnedEnemy(Enemy newEnemy)
+    {
+        if (newEnemy != null)
+        {
+            enemyList.Add(newEnemy);
+            Debug.Log($"[BattleManager] 난입! 새로운 적 {newEnemy.name} 추가됨. 현재 남은 적: {enemyList.Count}마리");
         }
     }
 
@@ -141,7 +152,9 @@ public class BattleManager : MonoBehaviour
             yield break;
         }
 
-        foreach (Enemy enemy in enemyList)
+        List<Enemy> currentTurnEnemies = new List<Enemy>(enemyList);
+
+        foreach (Enemy enemy in currentTurnEnemies)
         {
             if (!enemy.IsDead)
             {

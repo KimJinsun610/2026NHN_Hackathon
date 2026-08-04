@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Visuals")]
     // 인스펙터에서 연결해 줄 빨간색 테두리(또는 마커) 게임 오브젝트입니다.
-    [SerializeField] private GameObject targetIndicator;
+    [SerializeField] protected GameObject targetIndicator;
 
     private Player currentTarget;
 
@@ -116,5 +116,7 @@ public class Enemy : MonoBehaviour
         {
             targetIndicator.SetActive(isTargeted);
         }
+        else
+            Debug.Log("Target Marker가 없습니다.");
     }
 }

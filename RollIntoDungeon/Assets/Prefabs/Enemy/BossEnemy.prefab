@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5618125050089620637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 602728924952644898}
+  m_Layer: 0
+  m_Name: MiniionSpawnPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &602728924952644898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5618125050089620637}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.89, y: -3.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 940061489365864169}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6616864075889574843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54,6 +85,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3827448420016729853, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095278282276798799, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: enemyBody
+      value: 
+      objectReference: {fileID: 5310014252906894622}
+    - target: {fileID: 5131410712903065543, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6257776010651782482, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
@@ -132,8 +171,69 @@ PrefabInstance:
       propertyPath: defensePower
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6257776010651782482, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 602728924952644898}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6294616645844355762, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5310014252906894622}
   m_SourcePrefab: {fileID: 100100000, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+--- !u!1 &903300122625001737 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6294616645844355762, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+  m_PrefabInstance: {fileID: 6616864075889574843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5310014252906894622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903300122625001737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c833d361e1de049a0673cc2e035295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Boss
+  maxHp: 50
+  currentHp: 0
+  attackPower: 8
+  defensePower: 2
+  animator: {fileID: 7553129634099203004}
+  targetIndicator: {fileID: 2082277157644115068}
+  healthBar: {fileID: 6932851863678499189}
+  minionPrefab: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+  minionSpawnPoints:
+  - {fileID: 602728924952644898}
+  summonEffectPrefab: {fileID: 3585766359731094029, guid: 4bdb4aefe62f7bc4bb1a1f8a139116c9, type: 3}
+--- !u!4 &940061489365864169 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6257776010651782482, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+  m_PrefabInstance: {fileID: 6616864075889574843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2082277157644115068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5131410712903065543, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+  m_PrefabInstance: {fileID: 6616864075889574843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6932851863678499189 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4316034866577095374, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+  m_PrefabInstance: {fileID: 6616864075889574843}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d659ef806f6e94aa2345f09cbc7488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthBar
+--- !u!95 &7553129634099203004 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3675440543904860167, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+  m_PrefabInstance: {fileID: 6616864075889574843}
+  m_PrefabAsset: {fileID: 0}

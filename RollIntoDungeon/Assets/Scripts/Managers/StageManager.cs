@@ -3,15 +3,13 @@ using System.Collections.Generic; // List를 사용하기 위해 추가합니다
 
 public class StageManager : MonoBehaviour
 {
-    [Header("Test Settings")]
-    // [] 기호를 붙여 배열로 만듭니다. 이제 여러 마리를 등록할 수 있습니다.
-    [SerializeField] private Enemy[] enemyPrefabsToSpawn; 
-    
-    // 적들이 소환될 위치도 여러 개 배열로 받습니다.
-    [SerializeField] private Transform[] spawnPoints;
+    [Header("Currnet Stage Data")]
+    [SerializeField] private StageData currentStageData;
 
     [Header("Managers")]
     [SerializeField] private BattleManager battleManager;
+
+    private List<Enemy> spawnedEnemies = new List<Enemy>();
 
     void Start()
     {
@@ -20,24 +18,23 @@ public class StageManager : MonoBehaviour
 
     private void SetupTestStage()
     {
-        // 생성된 적들을 차곡차곡 담아둘 리스트 바구니입니다.
-        List<Enemy> spawnedEnemies = new List<Enemy>();
-
-        // 설정된 프리팹 개수만큼 반복문을 돌며 적을 생성합니다.
-        for (int i = 0; i < enemyPrefabsToSpawn.Length; i++)
+        if (currentStageData == null)
         {
-            if (enemyPrefabsToSpawn[i] == null || spawnPoints.Length <= i || spawnPoints[i] == null)
-                continue;
-
-            Enemy spawnedEnemy = Instantiate(enemyPrefabsToSpawn[i], spawnPoints[i].position, spawnPoints[i].rotation);
-
-            // 오브젝트 이름이 헷갈리지 않게 번호를 달아줍니다. (예: Slime_0, Slime_1)
-            spawnedEnemy.name = enemyPrefabsToSpawn[i].name + "_" + i;
-            
-            spawnedEnemies.Add(spawnedEnemy);
+            Debug.LogError("스테이지 데이터가 비어있습니다!");
+            return;
         }
 
-        // 완성된 다수의 적 리스트를 전투 매니저에게 통째로 넘겨줍니다.
+        Debug.Log($"--- 스테이지 {currentStageData.stageLevel} 세팅 시작 ---");
+
+        foreach (EnemySpawnInfo info in currentStageData.enemiesToSpawn)
+        {
+            //Quaternion rotation = Quaternion.Euler(info.spawnRotation);
+            Quaternion cameraRotation = Camera.main.transform.rotation;
+
+            Enemy newEnemy = Instantiate(info.enemyPrefab, info.spawnPosition, cameraRotation);
+            spawnedEnemies.Add(newEnemy);
+        }
+
         battleManager.InitializeBattle(spawnedEnemies);
     }
 }
