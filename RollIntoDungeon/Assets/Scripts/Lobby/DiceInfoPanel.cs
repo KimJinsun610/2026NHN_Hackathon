@@ -12,6 +12,7 @@ public class DiceInfoPanel : MonoBehaviour
     [SerializeField] private Image[] faceImages = new Image[6];
     [SerializeField] private DicePreviewRotator preview;
     [SerializeField] private Button equipButton;
+    [SerializeField] private LobbyAudio lobbyAudio;
 
     // 장착 슬롯(다음 항목)이 이 이벤트를 구독하면 된다.
     public event Action<DiceData> OnEquipRequested;
@@ -23,7 +24,14 @@ public class DiceInfoPanel : MonoBehaviour
         equipButton.interactable = false;
 
         if (panelRoot != null)
-            panelRoot.SetActive(false); // 아무것도 선택 안 한 초기 상태에는 숨김
+            panelRoot.SetActive(false); // 초기값을 채우기 전까지만 잠깐 숨김 (Start에서 소지 목록 첫 주사위로 채움)
+    }
+
+    void Start()
+    {
+        // DiceInventory.Awake()보다 먼저 실행될 수 있어(오브젝트 간 Awake 순서 미보장), 접근은 Start에서 수행한다.
+        if (DiceInventory.Instance != null && DiceInventory.Instance.OwnedDice.Count > 0)
+            HandleDiceSelected(DiceInventory.Instance.OwnedDice[0].data);
     }
 
     void OnEnable()
@@ -61,6 +69,8 @@ public class DiceInfoPanel : MonoBehaviour
     void HandleEquipClicked()
     {
         if (selectedData == null) return;
+
+        lobbyAudio.PlaySelectSound();
         OnEquipRequested?.Invoke(selectedData);
     }
 }

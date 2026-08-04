@@ -35,7 +35,7 @@ public class DiceSlotUI : MonoBehaviour
         iconImage.enabled = true;
         iconImage.sprite = data.icon;
         nameText.text = data.displayName;
-        countText.text = $"x{count}";
+        if (countText != null) countText.text = $"x{count}"; // 장착 슬롯처럼 개수 표시가 없는 프리팹도 있어 optional로 처리
         button.interactable = true;
     }
 
@@ -45,7 +45,7 @@ public class DiceSlotUI : MonoBehaviour
 
         iconImage.enabled = false;
         nameText.text = string.Empty;
-        countText.text = string.Empty;
+        if (countText != null) countText.text = string.Empty;
         button.interactable = false;
     }
 }

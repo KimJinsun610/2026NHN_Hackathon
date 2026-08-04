@@ -6,6 +6,7 @@ public class DiceInventoryView : MonoBehaviour
 {
     [SerializeField] private DiceSlotUI slotPrefab;
     [SerializeField] private Transform slotParent;
+    [SerializeField] private LobbyAudio lobbyAudio;
 
     // 다음 단계(선택한 주사위 정보 패널)가 이 이벤트를 구독하면 된다.
     public event Action<DiceData> OnDiceSlotClicked;
@@ -32,6 +33,7 @@ public class DiceInventoryView : MonoBehaviour
 
     void HandleSlotClicked(DiceData data)
     {
+        lobbyAudio.PlaySelectSound();
         OnDiceSlotClicked?.Invoke(data);
     }
 }
