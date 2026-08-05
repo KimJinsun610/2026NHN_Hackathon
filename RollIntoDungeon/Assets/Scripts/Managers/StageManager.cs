@@ -9,8 +9,6 @@ public class StageManager : MonoBehaviour
     [Header("Managers")]
     [SerializeField] private BattleManager battleManager;
 
-    private List<Enemy> spawnedEnemies = new List<Enemy>();
-
     void Start()
     {
         SetupTestStage();
@@ -26,15 +24,7 @@ public class StageManager : MonoBehaviour
 
         Debug.Log($"--- 스테이지 {currentStageData.stageLevel} 세팅 시작 ---");
 
-        foreach (EnemySpawnInfo info in currentStageData.enemiesToSpawn)
-        {
-            //Quaternion rotation = Quaternion.Euler(info.spawnRotation);
-            Quaternion cameraRotation = Camera.main.transform.rotation;
-
-            Enemy newEnemy = Instantiate(info.enemyPrefab, info.spawnPosition, cameraRotation);
-            spawnedEnemies.Add(newEnemy);
-        }
-
-        battleManager.InitializeBattle(spawnedEnemies);
+        // 적을 여기서 소환하지 않고, 배틀 매니저에게 스테이지 데이터 전체를 넘겨줍니다.
+        battleManager.InitializeBattle(currentStageData);
     }
 }

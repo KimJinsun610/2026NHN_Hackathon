@@ -15,7 +15,7 @@ public class Boss : Enemy
     {
         base.Start();
 
-        battleManager = FindObjectOfType<BattleManager>();
+        battleManager = FindAnyObjectByType<BattleManager>();
     }
 
     public override void Attack(Player target)

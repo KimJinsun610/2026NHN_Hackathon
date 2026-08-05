@@ -15,6 +15,9 @@ MonoBehaviour:
   stageLevel: 0
   isBossStage: 0
   enemiesToSpawn:
+  - enemyPrefab: {fileID: 8037545520545326022, guid: 94f07d4fbccb2234c84667491fa12429, type: 3}
+    spawnPosition: {x: 6, y: -4.5, z: 9}
+    spawnRotation: {x: 40, y: 0, z: 0}
   - enemyPrefab: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
     spawnPosition: {x: 6, y: -4.5, z: 9}
     spawnRotation: {x: 40, y: 0, z: 0}

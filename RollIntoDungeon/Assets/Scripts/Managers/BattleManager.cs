@@ -9,7 +9,7 @@ public class BattleManager : MonoBehaviour
     [Header("Characters")]
     [SerializeField] private Player player;
 
-    [Header("Dice System")] // 다이스 컨트롤러 연결을 위한 변수 추가
+    [Header("Dice System")] 
     [SerializeField] private DiceRoundController diceController;
 
     private List<Enemy> enemyList = new List<Enemy>();
@@ -20,6 +20,9 @@ public class BattleManager : MonoBehaviour
     [Header("Turn System")]
     public int CurrentTurn { get; private set; } = 1; // 현재 턴 (기본값 1)
     public event Action<int> OnTurnChanged; // 턴이 바뀔 때 발생할 이벤트
+
+    private StageData currentStageData;
+    private int currentWaveIndex = 0;
 
     private void OnEnable()
     {
@@ -37,16 +40,32 @@ public class BattleManager : MonoBehaviour
         }
     }
     
-    public void InitializeBattle(List<Enemy> spawnedEnemies)
+    public void InitializeBattle(StageData stageData)
     {
-        enemyList = spawnedEnemies;
-        Debug.Log($"[BattleManager] 총 {enemyList.Count} 마리의 적과 전투 세팅 완료!");
-        
-        // 처음 세팅될 때는 살아있는 첫 번째 적을 기본 타겟으로 잡아줍니다.
-        selectedTarget = enemyList.Find(e => !e.IsDead);
+        currentStageData = stageData;
+        currentWaveIndex = 0;
+        enemyList.Clear();
 
         CurrentTurn = 1;
         OnTurnChanged?.Invoke(CurrentTurn);
+
+        SpawnNextEnemy();
+    }
+
+    private void SpawnNextEnemy()
+    {
+        if (currentStageData == null || currentWaveIndex >= currentStageData.enemiesToSpawn.Count) return;
+
+        EnemySpawnInfo info = currentStageData.enemiesToSpawn[currentWaveIndex];
+        Quaternion cameraRotation = Camera.main.transform.rotation;
+
+        Enemy newEnemy = Instantiate(info.enemyPrefab, info.spawnPosition, cameraRotation);
+        enemyList.Add(newEnemy);
+
+        selectedTarget = newEnemy;
+
+        currentWaveIndex++;
+        Debug.Log($"[웨이브 {currentWaveIndex}/{currentStageData.enemiesToSpawn.Count}] {newEnemy.name} 등장!");
     }
 
     void Update()
@@ -104,18 +123,8 @@ public class BattleManager : MonoBehaviour
     // 다이스 컨트롤러에서 이벤트가 발생하면 자동으로 호출되는 함수
     private void OnDiceAttackConfirmed(AttackResult result)
     {
-        Debug.Log("--- OnDiceAttackConfirmed ---");
-        bool hasAliveEnemy = enemyList.Exists(e => !e.IsDead);
-
-        // 턴이 진행 중이 아니고, 플레이어가 살아있으며, 적이 남아있을 때만 턴 시작
-        if (!isTurnExecuting && !player.IsDead && hasAliveEnemy)
+        if (!isTurnExecuting && !player.IsDead && enemyList.Exists(e => !e.IsDead))
         {
-            Debug.Log("--- 조건 통과 ---");
-            if (selectedTarget == null || selectedTarget.IsDead)
-            {
-                selectedTarget = enemyList.Find(e => !e.IsDead);
-            }
-
             StartCoroutine(ExecuteTurn());
         }
     }
@@ -132,35 +141,49 @@ public class BattleManager : MonoBehaviour
     private IEnumerator ExecuteTurn()
     {
         isTurnExecuting = true;
-
         yield return null;
-
         Debug.Log("--- 턴 시작 ---");
 
-
-        // 선택된 타겟을 공격합니다!
+        // 1. 플레이어 공격턴
         if (selectedTarget != null && !selectedTarget.IsDead)
         {
             player.Attack(selectedTarget);
             yield return new WaitForSeconds(1.0f);
         }
 
-        if (!enemyList.Exists(e => !e.IsDead))
+        //죽은 적을 리스트에서 제거 
+        enemyList.RemoveAll(e => e == null || e.IsDead);
+
+        // 2. 필드에 남은 적이 하나도 없는지 검사
+        if (enemyList.Count == 0)
         {
-            Debug.Log("전투 승리! 모든 적을 처치했습니다.");
-            isTurnExecuting = false;
-            yield break;
+            if (currentWaveIndex < currentStageData.enemiesToSpawn.Count)
+            {
+                Debug.Log("적을 쓰러뜨렸습니다! 다음 적 등장 대기 중...");
+                yield return new WaitForSeconds(1.0f); 
+
+                SpawnNextEnemy(); // 다음 적 소환
+
+                FinishTurn();
+                yield break;
+            }
+            else
+            {
+                Debug.Log("전투 승리! 모든 웨이브를 클리어했습니다.");
+                isTurnExecuting = false;
+                yield break;
+            }
         }
 
+        // 3. 적 공격턴
         List<Enemy> currentTurnEnemies = new List<Enemy>(enemyList);
-
         foreach (Enemy enemy in currentTurnEnemies)
         {
             if (!enemy.IsDead)
             {
                 enemy.Attack(player);
-                yield return new WaitForSeconds(1.0f); 
-                
+                yield return new WaitForSeconds(1.0f);
+
                 if (player.IsDead)
                 {
                     Debug.Log("전투 패배... 플레이어가 쓰러졌습니다.");
@@ -170,7 +193,12 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        CurrentTurn++; 
+        FinishTurn();
+    }
+
+    private void FinishTurn()
+    {
+        CurrentTurn++;
         OnTurnChanged?.Invoke(CurrentTurn);
 
         if (diceController != null)
@@ -179,6 +207,6 @@ public class BattleManager : MonoBehaviour
         }
 
         isTurnExecuting = false;
-        Debug.Log("--- 턴 종료 (다음 스페이스바 대기) ---");
+        Debug.Log("--- 턴 종료  ---");
     }
 }
