@@ -11,6 +11,8 @@ public class DiceInventoryView : MonoBehaviour
     // 다음 단계(선택한 주사위 정보 패널)가 이 이벤트를 구독하면 된다.
     public event Action<DiceData> OnDiceSlotClicked;
 
+    private DiceSlotUI selectedSlot;
+
     void Start()
     {
         Populate();
@@ -21,19 +23,27 @@ public class DiceInventoryView : MonoBehaviour
         foreach (Transform child in slotParent)
             Destroy(child.gameObject);
 
+        selectedSlot = null;
+
         if (DiceInventory.Instance == null) return;
 
         foreach (var stack in DiceInventory.Instance.OwnedDice)
         {
             var slot = Instantiate(slotPrefab, slotParent);
             slot.Setup(stack.data, stack.count);
-            slot.OnClicked += HandleSlotClicked;
+            slot.OnClicked += _ => HandleSlotClicked(slot);
         }
     }
 
-    void HandleSlotClicked(DiceData data)
+    void HandleSlotClicked(DiceSlotUI slot)
     {
+        if (selectedSlot != null)
+            selectedSlot.SetSelected(false);
+
+        selectedSlot = slot;
+        selectedSlot.SetSelected(true);
+
         lobbyAudio.PlaySelectSound();
-        OnDiceSlotClicked?.Invoke(data);
+        OnDiceSlotClicked?.Invoke(slot.Data);
     }
 }

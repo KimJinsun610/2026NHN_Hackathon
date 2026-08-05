@@ -18,6 +18,9 @@ public class LobbyAudio : MonoBehaviour
     public void PlaySelectSound() => Play(selectSound);
     public void PlayUnequipSound() => Play(unequipSound);
 
+    // 사운드 재생 직후 씬을 전환하는 곳(NextRoundButton 등)이 전환을 얼마나 늦춰야 할지 알기 위해 사용
+    public float SelectSoundLength => selectSound != null ? selectSound.length : 0f;
+
     void Play(AudioClip clip)
     {
         if (clip == null) return;

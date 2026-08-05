@@ -419,12 +419,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0636a708787777d409da329004ed5e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  enemyName: Skeleton
   maxHp: 10
   currentHp: 0
   attackPower: 3
   defensePower: 1
   animator: {fileID: 3675440543904860167}
   targetIndicator: {fileID: 5131410712903065543}
+  visualRoot: {fileID: 700700559673321658}
   healthBar: {fileID: 4316034866577095374}
 --- !u!61 &7193762961816527429
 BoxCollider2D:

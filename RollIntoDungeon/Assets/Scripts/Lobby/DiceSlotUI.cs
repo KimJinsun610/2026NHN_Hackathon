@@ -11,6 +11,7 @@ public class DiceSlotUI : MonoBehaviour
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text countText;
     [SerializeField] private Button button;
+    [SerializeField] private GameObject selectionFrame; // 선택 시에만 활성화되는 테두리 프레임 오브젝트
 
     public DiceData Data { get; private set; }
     public bool IsEmpty => Data == null;
@@ -37,6 +38,7 @@ public class DiceSlotUI : MonoBehaviour
         nameText.text = data.displayName;
         if (countText != null) countText.text = $"x{count}"; // 장착 슬롯처럼 개수 표시가 없는 프리팹도 있어 optional로 처리
         button.interactable = true;
+        SetSelected(false);
     }
 
     public void SetEmpty()
@@ -47,5 +49,12 @@ public class DiceSlotUI : MonoBehaviour
         nameText.text = string.Empty;
         if (countText != null) countText.text = string.Empty;
         button.interactable = false;
+        SetSelected(false);
+    }
+
+    public void SetSelected(bool selected)
+    {
+        if (selectionFrame != null)
+            selectionFrame.SetActive(selected);
     }
 }

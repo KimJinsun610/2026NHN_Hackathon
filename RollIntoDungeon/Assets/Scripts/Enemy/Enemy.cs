@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy Status")]
+    [SerializeField] protected string enemyName = "Enemy";
     // 상속받을 Boss 클래스에서도 접근할 수 있도록 private 대신 protected를 사용합니다.
     [SerializeField] protected int maxHp = 50;
     [SerializeField] protected int currentHp;
@@ -16,14 +17,28 @@ public class Enemy : MonoBehaviour
 
     public bool IsDead => currentHp <= 0;
 
+    // 로비 던전 정보창 등 UI에서 스탯을 읽기 위한 공개 게터
+    public string EnemyName => enemyName;
+    public int MaxHp => maxHp;
+    public int AttackPower => attackPower;
+    public int DefensePower => defensePower;
+
     [Header("Visuals")]
     // 인스펙터에서 연결해 줄 빨간색 테두리(또는 마커) 게임 오브젝트입니다.
     [SerializeField] protected GameObject targetIndicator;
+
+    // 전투 로직(콜라이더/AI 등) 없이 프리뷰용으로 인스턴스화할 수 있는 순수 비주얼 자식(Animator+SpriteRenderer).
+    // 로비 던전 정보창에서 이 부분만 떼어 인스턴스화해 idle 애니메이션을 보여준다.
+    [SerializeField] protected GameObject visualRoot;
+    public GameObject VisualRoot => visualRoot;
 
     private Player currentTarget;
 
     [Header("UI")]
     [SerializeField] private HealthBar healthBar;
+
+    [SerializeField] protected Sprite icon; // 로비 던전 정보창 리스트 슬롯 썸네일용
+    public Sprite Icon => icon;
 
     // virtual 키워드를 붙여두면 자식 클래스(Boss)에서 이 함수를 덮어쓰기(Override) 할 수 있습니다.
     protected virtual void Start()
