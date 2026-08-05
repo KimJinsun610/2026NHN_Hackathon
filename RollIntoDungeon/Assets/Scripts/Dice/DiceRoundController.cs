@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 // "다시 굴리기"/"이대로 공격하기" 버튼 입력을 받아 리롤 횟수를 관리하고,
 // 공격 확정 시 최종 공격/방어값(AttackResult)을 전투 시스템에 이벤트로 전달한다.
+[RequireComponent(typeof(AudioSource))]
 public class DiceRoundController : MonoBehaviour
 {
     [SerializeField] private DiceManager diceManager;
@@ -11,6 +12,9 @@ public class DiceRoundController : MonoBehaviour
     [SerializeField] private Button attackButton;
     [SerializeField] private int maxRerollCount = 3;
     [SerializeField] private int criticalMultiplier = 3;
+    [SerializeField] private AudioClip buttonClickSound;
+
+    private AudioSource audioSource;
 
     public int RerollsRemaining { get; private set; }
     public int MaxRerollCount => maxRerollCount;
@@ -23,6 +27,7 @@ public class DiceRoundController : MonoBehaviour
     void Awake()
     {
         RerollsRemaining = maxRerollCount;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -46,6 +51,7 @@ public class DiceRoundController : MonoBehaviour
     {
         if (RerollsRemaining <= 0 || diceManager.AnyRolling) return;
 
+        PlayClickSound();
         RerollsRemaining--;
         OnRerollsRemainingChanged?.Invoke(RerollsRemaining);
         diceManager.RollUnfixed();
@@ -57,6 +63,7 @@ public class DiceRoundController : MonoBehaviour
         if (!diceManager.AllSettled()) return;
         if (RerollsRemaining == maxRerollCount) return; // 이번 라운드에 한 번도 안 굴렸으면 공격 불가
 
+        PlayClickSound();
         var totals = diceManager.CurrentTotals;
         bool isCritical = diceManager.AllSameValue();
         int finalAttack = isCritical ? totals.Attack * criticalMultiplier : totals.Attack;
@@ -79,6 +86,12 @@ public class DiceRoundController : MonoBehaviour
         RefreshButtons();
     }
 
+
+    void PlayClickSound()
+    {
+        if (buttonClickSound == null) return;
+        audioSource.PlayOneShot(buttonClickSound);
+    }
 
     void RefreshButtons()
     {

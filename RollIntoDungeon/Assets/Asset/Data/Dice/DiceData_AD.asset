@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c6eff744f10bd498e2e8d0030f8857, type: 3}
+  m_Name: DiceData_AD
+  m_EditorClassIdentifier: Assembly-CSharp::DiceData
+  diceId: Dice_AD
+  displayName: ADDice
+  icon: {fileID: 21300000, guid: c053537dc7d708940a7ace8a6f862992, type: 3}
+  worldPrefab: {fileID: 3489296849605583927, guid: 3b1e14355bda0dc429131b2de522374a, type: 3}
+  previewPrefab: {fileID: 9117152646185117810, guid: f42cca4aeb78ceb42957eee132ae5008, type: 3}
+  description: 
+  faces:
+  - image: {fileID: 21300000, guid: 2653f51f4818981498d0b53022aded83, type: 3}
+    faceType: 1
+    value: 1
+  - image: {fileID: 21300000, guid: b419d0a278c3b7c45abeb0de349b41d6, type: 3}
+    faceType: 0
+    value: 2
+  - image: {fileID: 21300000, guid: 09133cb4abc2ad74aaec1b78b596870f, type: 3}
+    faceType: 1
+    value: 3
+  - image: {fileID: 21300000, guid: 2f21fd4fbe4d5ac4288a7fd18f0bdc94, type: 3}
+    faceType: 0
+    value: 4
+  - image: {fileID: 21300000, guid: 32f4ba1f9c6d5db4785e5c8f45940dab, type: 3}
+    faceType: 1
+    value: 5
+  - image: {fileID: 21300000, guid: 55c3f660654c8e74481a2d0038daa5e8, type: 3}
+    faceType: 0
+    value: 6

@@ -12,6 +12,9 @@ public class DiceDrop : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    // DiceSpawner가 동적으로 생성한 주사위에 굴림 기준점을 지정할 때 사용
+    public void SetDropPoint(Transform point) => dropPoint = point;
+
     // Dice.cs가 굴리기를 트리거할 때 호출 (개별 R키 테스트는 DiceManager로 이동)
     public void Drop()
     {
