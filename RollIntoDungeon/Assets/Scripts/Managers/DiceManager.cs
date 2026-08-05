@@ -82,6 +82,16 @@ public class DiceManager : MonoBehaviour
     public int FixedCount => dices.Count(d => d.IsFixed);
     public bool CanFixMore => FixedCount < maxFixedCount;
 
+    // DiceSpawner가 EquippedDice 기준으로 동적 생성한 주사위를 등록할 때 사용.
+    // Awake 시점에 이미 구독한 Inspector 리스트와 별개로, 실행 중 추가된 주사위도 동일하게 이벤트 구독된다.
+    public void RegisterDice(Dice dice)
+    {
+        if (dice == null || dices.Contains(dice)) return;
+
+        dices.Add(dice);
+        dice.OnStateChanged += HandleDiceStateChanged;
+    }
+
     // DiceSelector가 클릭 시 이 메서드를 통해 고정을 시도한다 (dice.ToggleFix() 직접 호출 금지).
     // 해제는 항상 허용하고, 신규 고정은 개수 제한을 넘으면 막는다.
     public bool TryToggleFix(Dice dice)

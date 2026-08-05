@@ -19,7 +19,11 @@ public class MainSceneController : MonoBehaviour
     void Update()
     {
         if (isTransitioning) return;
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+
+        bool mouseClicked = Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame;
+        bool keyPressed = Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame;
+
+        if (mouseClicked || keyPressed)
             StartTransition();
     }
 
