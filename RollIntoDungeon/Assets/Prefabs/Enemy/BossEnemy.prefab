@@ -223,10 +223,10 @@ MonoBehaviour:
   animator: {fileID: 7553129634099203004}
   targetIndicator: {fileID: 2082277157644115068}
   healthBar: {fileID: 6932851863678499189}
+  attackSound: {fileID: 8300000, guid: dff379044897e744cbf00aecb3b3b8ba, type: 3}
   minionPrefab: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
   minionSpawnPoints:
   - {fileID: 602728924952644898}
-  summonEffectPrefab: {fileID: 3585766359731094029, guid: 4bdb4aefe62f7bc4bb1a1f8a139116c9, type: 3}
 --- !u!4 &940061489365864169 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6257776010651782482, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}

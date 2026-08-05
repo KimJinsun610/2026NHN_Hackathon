@@ -426,6 +426,7 @@ MonoBehaviour:
   animator: {fileID: 3675440543904860167}
   targetIndicator: {fileID: 5131410712903065543}
   healthBar: {fileID: 4316034866577095374}
+  attackSound: {fileID: 8300000, guid: 30d316a41e56d0e489381d7e65d72f3c, type: 3}
 --- !u!61 &7193762961816527429
 BoxCollider2D:
   m_ObjectHideFlags: 0

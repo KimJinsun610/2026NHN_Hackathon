@@ -28,6 +28,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private DiceRoundController diceController;
 
+    [Header("Sounds")]
+    public AudioClip attackSound;
+
     // 1. 컴포넌트가 켜질 때 이벤트를 구독(연결)합니다.
     private void OnEnable()
     {
@@ -78,6 +81,10 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("CriticalAttack");
             else
                 animator.SetTrigger("Attack");
+            if (SfxManager.Instance != null && attackSound != null)
+            {
+                SfxManager.Instance.PlaySFX(attackSound);
+            }
         }
 
     }

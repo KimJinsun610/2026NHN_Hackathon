@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
 
 public class Boss : Enemy
 {
@@ -8,8 +9,6 @@ public class Boss : Enemy
 
     private bool hasSummonedMinions = false;
     private BattleManager battleManager;
-
-    [SerializeField] private GameObject summonEffectPrefab;
 
     protected override void Start()
     {
@@ -40,9 +39,10 @@ public class Boss : Enemy
 
         foreach (Transform spawnPoint in minionSpawnPoints)
         {
-            if (summonEffectPrefab != null)
+
+            if (EffectManager.Instance != null)
             {
-                Instantiate(summonEffectPrefab, spawnPoint.position, spawnPoint.rotation);
+                EffectManager.Instance.PlayDefaultSpawnEffect(spawnPoint.position);
             }
 
             Enemy minion = Instantiate(minionPrefab, spawnPoint.position, spawnPoint.rotation);

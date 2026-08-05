@@ -25,6 +25,10 @@ public class Enemy : MonoBehaviour
     [Header("UI")]
     [SerializeField] private HealthBar healthBar;
 
+
+    [Header("Sounds")]
+    public AudioClip attackSound;
+
     // virtual 키워드를 붙여두면 자식 클래스(Boss)에서 이 함수를 덮어쓰기(Override) 할 수 있습니다.
     protected virtual void Start()
     {
@@ -50,7 +54,14 @@ public class Enemy : MonoBehaviour
         Debug.Log($"[Enemy] 플레이어에게 {attackPower}의 데미지로 기본 공격!");
 
         currentTarget = target;
-        if (animator != null) animator.SetTrigger("Attack");
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+            if (SfxManager.Instance != null && attackSound != null)
+            {
+                SfxManager.Instance.PlaySFX(attackSound);
+            }
+        }
 
     }
 

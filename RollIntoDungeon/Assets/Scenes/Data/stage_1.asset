@@ -21,3 +21,12 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
     spawnPosition: {x: 6, y: -4.5, z: 9}
     spawnRotation: {x: 40, y: 0, z: 0}
+  - enemyPrefab: {fileID: 7715832058841636960, guid: 630ce94c263202f4982dcf418e277eed, type: 3}
+    spawnPosition: {x: 6, y: -4.5, z: 9}
+    spawnRotation: {x: 40, y: 0, z: 0}
+  - enemyPrefab: {fileID: 4995669741809811466, guid: 34e1b3bff909ef440b48b6e8a31c0c9d, type: 3}
+    spawnPosition: {x: 6, y: -4.5, z: 9}
+    spawnRotation: {x: 40, y: 0, z: 0}
+  - enemyPrefab: {fileID: 5310014252906894622, guid: 931f26b9f9dc468469b5eca299677a1c, type: 3}
+    spawnPosition: {x: 4, y: -4.5, z: 9}
+    spawnRotation: {x: 40, y: 0, z: 0}

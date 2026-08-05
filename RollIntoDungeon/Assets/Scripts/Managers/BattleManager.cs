@@ -59,6 +59,11 @@ public class BattleManager : MonoBehaviour
         EnemySpawnInfo info = currentStageData.enemiesToSpawn[currentWaveIndex];
         Quaternion cameraRotation = Camera.main.transform.rotation;
 
+        if (EffectManager.Instance != null)
+        {
+            EffectManager.Instance.PlayDefaultSpawnEffect(info.spawnPosition);
+        }
+
         Enemy newEnemy = Instantiate(info.enemyPrefab, info.spawnPosition, cameraRotation);
         enemyList.Add(newEnemy);
 
