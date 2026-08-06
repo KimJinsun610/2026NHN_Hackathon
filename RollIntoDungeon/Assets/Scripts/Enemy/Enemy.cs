@@ -28,6 +28,8 @@ public class Enemy : MonoBehaviour
 
     [Header("Sounds")]
     public AudioClip attackSound;
+    public AudioClip deathSound;
+    public AudioClip hitSound;
 
     // virtual 키워드를 붙여두면 자식 클래스(Boss)에서 이 함수를 덮어쓰기(Override) 할 수 있습니다.
     protected virtual void Start()
@@ -94,7 +96,14 @@ public class Enemy : MonoBehaviour
             healthBar.UpdateHP(currentHp, maxHp);
         }
 
-        if (animator != null) animator.SetTrigger("Hit");
+        if (animator != null)
+        {
+            animator.SetTrigger("Hit");
+            if (SfxManager.Instance != null && hitSound != null)
+            {
+                SfxManager.Instance.PlaySFX(hitSound);
+            }
+        }
 
         if (currentHp <= 0)
         {
@@ -109,7 +118,14 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("[Enemy] 쓰러졌습니다.");
 
-        if (animator != null) animator.SetBool("IsDead", true);
+        if (animator != null)
+        {
+            animator.SetBool("IsDead", true);
+            if (SfxManager.Instance != null && deathSound != null)
+            {
+                SfxManager.Instance.PlaySFX(deathSound);
+            }
+        }
 
         // TODO: BattleManager에 적 사망 이벤트를 전달하여 턴 종료 및 보상 처리
     }

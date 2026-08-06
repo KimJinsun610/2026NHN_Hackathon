@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
 
     [Header("Sounds")]
     public AudioClip attackSound;
+    public AudioClip deathSound;
+    public AudioClip hitSound;
 
     // 1. 컴포넌트가 켜질 때 이벤트를 구독(연결)합니다.
     private void OnEnable()
@@ -116,7 +118,14 @@ public class Player : MonoBehaviour
             healthBar.UpdateHP(currentHp, maxHp);
         }
 
-        if (animator != null) animator.SetTrigger("Hit");
+        if (animator != null)
+        {
+            animator.SetTrigger("Hit");
+            if (SfxManager.Instance != null && hitSound != null)
+            {
+                SfxManager.Instance.PlaySFX(hitSound);
+            }
+        }
 
         if (currentHp <= 0)
         {
@@ -131,7 +140,14 @@ public class Player : MonoBehaviour
     {
         Debug.Log("[Player] 사망했습니다.");
 
-        if (animator != null) animator.SetBool("IsDead", true);
+        if (animator != null)
+        {
+            animator.SetBool("IsDead", true);
+            if (SfxManager.Instance != null && deathSound != null)
+            {
+                SfxManager.Instance.PlaySFX(deathSound);
+            }
+        }
     }
 
 

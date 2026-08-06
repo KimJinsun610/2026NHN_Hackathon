@@ -24,6 +24,10 @@ public class BattleManager : MonoBehaviour
     private StageData currentStageData;
     private int currentWaveIndex = 0;
 
+    [Header("Sounds")]
+    public AudioClip summonSound;
+
+
     private void OnEnable()
     {
         if (diceController != null)
@@ -62,6 +66,11 @@ public class BattleManager : MonoBehaviour
         if (EffectManager.Instance != null)
         {
             EffectManager.Instance.PlayDefaultSpawnEffect(info.spawnPosition);
+        }
+
+        if (SfxManager.Instance != null && summonSound != null)
+        {
+            SfxManager.Instance.PlaySFX(summonSound);
         }
 
         Enemy newEnemy = Instantiate(info.enemyPrefab, info.spawnPosition, cameraRotation);
@@ -176,6 +185,10 @@ public class BattleManager : MonoBehaviour
             {
                 Debug.Log("전투 승리! 모든 웨이브를 클리어했습니다.");
                 isTurnExecuting = false;
+
+
+                if (BattleResultUI.Instance != null) BattleResultUI.Instance.ShowClearPopup();
+
                 yield break;
             }
         }
@@ -193,6 +206,9 @@ public class BattleManager : MonoBehaviour
                 {
                     Debug.Log("전투 패배... 플레이어가 쓰러졌습니다.");
                     isTurnExecuting = false;
+
+                    if (BattleResultUI.Instance != null) BattleResultUI.Instance.ShowOverPopup();
+
                     yield break;
                 }
             }
