@@ -8,6 +8,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2304247066883643889, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665317235620863066, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3440627012624405336, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3440627012624405336, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3440627012624405336, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3586611829599498257, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3586611829599498257, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 3675440543904860167, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: m_Controller
       value: 
@@ -62,24 +90,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: icon
-      value:
+      value: 
       objectReference: {fileID: 21300000, guid: 957da5a4208eea44293748a022cd474f, type: 3}
+    - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 65d67bb1faf4dc341aaaef4ba61a565a, type: 3}
     - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: enemyName
       value: Mushroom
       objectReference: {fileID: 0}
     - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
-      propertyPath: hitSound
-      value:
-      objectReference: {fileID: 8300000, guid: 65d67bb1faf4dc341aaaef4ba61a565a, type: 3}
-    - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: deathSound
-      value:
+      value: 
       objectReference: {fileID: 8300000, guid: 493ae98b0d4364645a7470a1f8b63696, type: 3}
     - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: attackSound
-      value:
+      value: 
       objectReference: {fileID: 8300000, guid: 350013293168947478d60898f9dd87dd, type: 3}
+    - target: {fileID: 7895216742219323353, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7895216742219323353, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
