@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3675440543904860167}
   - component: {fileID: 6261579771232394497}
   - component: {fileID: 4095278282276798799}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemyVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -589844097
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4723107735738678597, guid: 1018b0ba13578bf459bd254ae1a2be99, type: 3}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 3586611829599498257}
   - component: {fileID: 7669724041672128372}
   - component: {fileID: 5027721637488137185}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 7895216742219323353}
   - component: {fileID: 8084397696750721416}
   - component: {fileID: 3398289522480177587}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2304247066883643889}
   - component: {fileID: 5264217752519592516}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -589844097
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 6257776010651782482}
   - component: {fileID: 7369517250337217348}
   - component: {fileID: 7193762961816527429}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 6010797333459087602}
   - component: {fileID: 8753069245145897179}
   - component: {fileID: 4316034866577095374}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 7133700744832966866}
   - component: {fileID: 8197139806319780972}
   - component: {fileID: 2665317235620863066}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
