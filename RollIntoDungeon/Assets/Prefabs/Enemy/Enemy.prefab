@@ -419,13 +419,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0636a708787777d409da329004ed5e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  enemyName: Skeleton
   maxHp: 10
   currentHp: 0
   attackPower: 3
   defensePower: 1
   animator: {fileID: 3675440543904860167}
   targetIndicator: {fileID: 5131410712903065543}
+  visualRoot: {fileID: 700700559673321658}
   healthBar: {fileID: 4316034866577095374}
+  icon: {fileID: 21300000, guid: 7ffdc2f7d2025b04d81ad93987478d49, type: 3}
   attackSound: {fileID: 8300000, guid: 30d316a41e56d0e489381d7e65d72f3c, type: 3}
   deathSound: {fileID: 8300000, guid: c0d0d72125b14714b828c1484552dab8, type: 3}
   hitSound: {fileID: 8300000, guid: ed4a6dd7d47038d4d8aff94398fc256d, type: 3}

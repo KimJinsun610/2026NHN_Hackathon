@@ -61,16 +61,24 @@ PrefabInstance:
       value: Goblin
       objectReference: {fileID: 0}
     - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: icon
+      value:
+      objectReference: {fileID: 21300000, guid: 8d872d831dffe214096884a768b139ca, type: 3}
+    - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: enemyName
+      value: Goblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: hitSound
-      value: 
+      value:
       objectReference: {fileID: 8300000, guid: 19fe51529be81c046bb28c7bcf2cf6b4, type: 3}
     - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: deathSound
-      value: 
+      value:
       objectReference: {fileID: 8300000, guid: fbcb97866bab0664a8ed4a758b5bac63, type: 3}
     - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: attackSound
-      value: 
+      value:
       objectReference: {fileID: 8300000, guid: 6a8790cef388b6043a3d1612370c0888, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

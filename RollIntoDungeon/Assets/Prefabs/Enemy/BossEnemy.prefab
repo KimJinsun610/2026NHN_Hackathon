@@ -216,13 +216,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c833d361e1de049a0673cc2e035295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
+  enemyName: Flame Warlock
   maxHp: 50
   currentHp: 0
   attackPower: 8
   defensePower: 2
   animator: {fileID: 7553129634099203004}
   targetIndicator: {fileID: 2082277157644115068}
+  visualRoot: {fileID: 5938754374750694145}
   healthBar: {fileID: 6932851863678499189}
+  icon: {fileID: 21300000, guid: fb835d1f4c9e2074cb5230ee35f76940, type: 3}
   attackSound: {fileID: 8300000, guid: dff379044897e744cbf00aecb3b3b8ba, type: 3}
   deathSound: {fileID: 8300000, guid: d7de61898e9762142bda031f73ac8239, type: 3}
   hitSound: {fileID: 8300000, guid: d8894daa68a45884190cfbd1f9c0d1a6, type: 3}
@@ -237,6 +240,11 @@ Transform:
 --- !u!1 &2082277157644115068 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5131410712903065543, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+  m_PrefabInstance: {fileID: 6616864075889574843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5938754374750694145 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 700700559673321658, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
   m_PrefabInstance: {fileID: 6616864075889574843}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6932851863678499189 stripped

@@ -530,7 +530,7 @@ Transform:
   m_GameObject: {fileID: 398012189}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: -5.7219076, z: 4.0499997}
+  m_LocalPosition: {x: -2, y: -5, z: 4.0499997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -670,7 +670,7 @@ GameObject:
   - component: {fileID: 516987867}
   - component: {fileID: 516987869}
   - component: {fileID: 516987868}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GameClear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1056,6 +1056,10 @@ PrefabInstance:
       propertyPath: bgmClip
       value: 
       objectReference: {fileID: 8300000, guid: 7b203ba113e0307469dca4ce61b949fe, type: 3}
+    - target: {fileID: 18187436039974248, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: bgmVolume
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3351524568453992729, guid: 2eed69670566be647b9aced39f706d37, type: 3}
       propertyPath: m_Name
       value: BGMTrigger
@@ -1545,8 +1549,8 @@ MonoBehaviour:
   diceManager: {fileID: 1275433239}
   dropPoints:
   - {fileID: 398012190}
-  - {fileID: 398012190}
-  - {fileID: 398012190}
+  - {fileID: 862844038}
+  - {fileID: 1281898964}
   - {fileID: 398012190}
 --- !u!4 &829319189
 Transform:
@@ -1558,6 +1562,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.1996, y: -5.56932, z: 2.665}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &862844037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 862844038}
+  m_Layer: 0
+  m_Name: DropPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &862844038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862844037}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: -5, z: 4.0499997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1905,7 +1940,7 @@ GameObject:
   - component: {fileID: 1001958747}
   - component: {fileID: 1001958746}
   m_Layer: 0
-  m_Name: TempBoard
+  m_Name: DiceBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2426,6 +2461,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1281898963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1281898964}
+  m_Layer: 0
+  m_Name: DropPoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1281898964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281898963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: -5, z: 4.0499997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1325965971 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1036538425633290911, guid: d3d6281af8b9ed742853a233f5b949f4, type: 3}
@@ -2563,7 +2629,7 @@ GameObject:
   - component: {fileID: 1596903032}
   - component: {fileID: 1596903031}
   - component: {fileID: 1596903030}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3511,6 +3577,8 @@ SceneRoots:
   - {fileID: 430414112}
   - {fileID: 1001958747}
   - {fileID: 398012190}
+  - {fileID: 862844038}
+  - {fileID: 1281898964}
   - {fileID: 1275433240}
   - {fileID: 1787116368}
   - {fileID: 607815769}

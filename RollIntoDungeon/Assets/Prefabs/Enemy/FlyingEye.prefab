@@ -73,16 +73,24 @@ PrefabInstance:
       value: FlyingEye
       objectReference: {fileID: 0}
     - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: icon
+      value:
+      objectReference: {fileID: 21300000, guid: dc4069ff44062b04d98f45da4bef0ce5, type: 3}
+    - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: enemyName
+      value: FlyingEye
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: hitSound
-      value: 
+      value:
       objectReference: {fileID: 8300000, guid: b6883d3a331ed1c45b310da138b09c3e, type: 3}
     - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: deathSound
-      value: 
+      value:
       objectReference: {fileID: 8300000, guid: aacc60da24d8b6a49ab76b98065bdba5, type: 3}
     - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: attackSound
-      value: 
+      value:
       objectReference: {fileID: 8300000, guid: 50b3459f9e8cdc140915bbb799e54c6d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
