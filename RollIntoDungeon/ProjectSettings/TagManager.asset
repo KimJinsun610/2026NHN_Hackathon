@@ -45,11 +45,11 @@ TagManager:
   - name: BackGround
     uniqueID: 4230074813
     locked: 0
-  - name: Dice UI
-    uniqueID: 2528322091
-    locked: 0
   - name: Character
     uniqueID: 3705123199
+    locked: 0
+  - name: Dice UI
+    uniqueID: 2528322091
     locked: 0
   - name: Effect
     uniqueID: 239308383

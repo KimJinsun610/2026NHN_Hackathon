@@ -1678,7 +1678,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -589844097
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4723107735738678597, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
@@ -1992,7 +1992,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1766645205
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 08c3fd95ab4a8974ab7b203b2c2b03f0, type: 3}
@@ -2186,6 +2186,14 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2023951145409231185, guid: d3d6281af8b9ed742853a233f5b949f4, type: 3}
+      propertyPath: m_margin.w
+      value: 0.41615674
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023951145409231185, guid: d3d6281af8b9ed742853a233f5b949f4, type: 3}
+      propertyPath: m_margin.z
+      value: 82.79581
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023951145409231185, guid: d3d6281af8b9ed742853a233f5b949f4, type: 3}
       propertyPath: m_fontColor.b
       value: 0.54509807
       objectReference: {fileID: 0}
@@ -2204,6 +2212,10 @@ PrefabInstance:
     - target: {fileID: 2023951145409231185, guid: d3d6281af8b9ed742853a233f5b949f4, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4287344318
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023951145409231185, guid: d3d6281af8b9ed742853a233f5b949f4, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2023951145409231185, guid: d3d6281af8b9ed742853a233f5b949f4, type: 3}
       propertyPath: m_characterHorizontalScale

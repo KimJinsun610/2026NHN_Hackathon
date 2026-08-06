@@ -2710,7 +2710,7 @@ MonoBehaviour:
   - data: {fileID: 11400000, guid: 9ab47bb34054d3246ad5eb844df5c50a, type: 2}
     count: 2
   - data: {fileID: 11400000, guid: 870b8511c651e6844a096bd7607c19e4, type: 2}
-    count: 1
+    count: 2
   - data: {fileID: 11400000, guid: e48d33b7b9c63684f940e421498b629a, type: 2}
     count: 1
   - data: {fileID: 11400000, guid: 3fd9e49dac0400149a2e0b7b1e7bb163, type: 2}

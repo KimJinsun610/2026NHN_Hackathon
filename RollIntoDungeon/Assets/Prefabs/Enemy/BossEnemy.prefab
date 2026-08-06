@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5618125050089620637}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.89, y: -3.2, z: 0}
+  m_LocalPosition: {x: 3.8899999, y: -1.1999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73,11 +73,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2665317235620863066, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: m_margin.y
-      value: 4.61314
+      value: 18.29712
       objectReference: {fileID: 0}
     - target: {fileID: 2665317235620863066, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: m_margin.z
-      value: -6.6118393
+      value: 73.43394
       objectReference: {fileID: 0}
     - target: {fileID: 2665317235620863066, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: m_fontAsset
