@@ -18,6 +18,7 @@ public class DiceRoundController : MonoBehaviour
 
     public int RerollsRemaining { get; private set; }
     public int MaxRerollCount => maxRerollCount;
+    public int CriticalMultiplier => criticalMultiplier;
 
     // 전투 시스템(타 팀원)이 구독할 이벤트
     public event Action<AttackResult> OnAttackConfirmed;

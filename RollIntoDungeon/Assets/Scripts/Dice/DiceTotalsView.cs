@@ -7,6 +7,7 @@ using TMPro;
 public class DiceTotalsView : MonoBehaviour
 {
     [SerializeField] private DiceManager diceManager;
+    [SerializeField] private DiceRoundController roundController;
     [SerializeField] private TMP_Text attackText;
     [SerializeField] private TMP_Text defenseText;
     [SerializeField] private float countUpInterval = 0.05f; // 1 증가당 대기 시간
@@ -29,8 +30,9 @@ public class DiceTotalsView : MonoBehaviour
         battleManager.OnTurnChanged += HandleTurnChanged;
 
         // 최초 진입(씬 재진입 등) 시에는 카운트업 없이 즉시 동기화
-        attackStat.SetImmediate(diceManager.CurrentTotals.Attack);
-        defenseStat.SetImmediate(diceManager.CurrentTotals.Defense);
+        var (attack, defense) = GetDisplayTotals();
+        attackStat.SetImmediate(attack);
+        defenseStat.SetImmediate(defense);
     }
 
     void OnDisable()
@@ -41,8 +43,17 @@ public class DiceTotalsView : MonoBehaviour
 
     void HandleTotalsChanged(DiceTotals totals)
     {
-        attackStat.AnimateTo(totals.Attack, countUpInterval);
-        defenseStat.AnimateTo(totals.Defense, countUpInterval);
+        var (attack, defense) = GetDisplayTotals();
+        attackStat.AnimateTo(attack, countUpInterval);
+        defenseStat.AnimateTo(defense, countUpInterval);
+    }
+
+    // 강공격(전 주사위 동일 눈금) 조건이면 실제 공격 시 적용되는 배율을 화면에도 미리 반영한다.
+    (int attack, int defense) GetDisplayTotals()
+    {
+        var totals = diceManager.CurrentTotals;
+        int multiplier = diceManager.AllSameValue() ? roundController.CriticalMultiplier : 1;
+        return (totals.Attack * multiplier, totals.Defense * multiplier);
     }
 
     private void HandleTurnChanged(int currentTurn)
