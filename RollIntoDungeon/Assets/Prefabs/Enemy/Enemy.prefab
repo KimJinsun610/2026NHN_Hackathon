@@ -428,6 +428,7 @@ MonoBehaviour:
   targetIndicator: {fileID: 5131410712903065543}
   visualRoot: {fileID: 700700559673321658}
   healthBar: {fileID: 4316034866577095374}
+  icon: {fileID: 21300000, guid: 7ffdc2f7d2025b04d81ad93987478d49, type: 3}
 --- !u!61 &7193762961816527429
 BoxCollider2D:
   m_ObjectHideFlags: 0

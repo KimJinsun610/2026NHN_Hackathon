@@ -326,7 +326,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba0801152a80cd840b240ff6d9a24a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiceAudio
-  impactClips: []
+  impactClips:
+  - {fileID: 8300000, guid: e422039df48c639429548d4ae18309f2, type: 3}
+  - {fileID: 8300000, guid: a938e2b0fda8ef64b8a4d68bb294a16b, type: 3}
+  - {fileID: 8300000, guid: a15c8ea66313ce643bcb5e2351b73464, type: 3}
   minImpactSpeed: 0.5
-  maxImpactSpeed: 6
+  maxImpactSpeed: 1
+  minVolume: 1
+  maxVolume: 1
   pitchRange: {x: 0.95, y: 1.05}

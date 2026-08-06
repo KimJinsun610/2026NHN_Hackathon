@@ -928,6 +928,10 @@ PrefabInstance:
       propertyPath: bgmClip
       value: 
       objectReference: {fileID: 8300000, guid: 7b203ba113e0307469dca4ce61b949fe, type: 3}
+    - target: {fileID: 18187436039974248, guid: 2eed69670566be647b9aced39f706d37, type: 3}
+      propertyPath: bgmVolume
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3351524568453992729, guid: 2eed69670566be647b9aced39f706d37, type: 3}
       propertyPath: m_Name
       value: BGMTrigger
@@ -1808,7 +1812,7 @@ GameObject:
   - component: {fileID: 1001958747}
   - component: {fileID: 1001958746}
   m_Layer: 0
-  m_Name: TempBoard
+  m_Name: DiceBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

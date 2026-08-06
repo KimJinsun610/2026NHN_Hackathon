@@ -73,6 +73,10 @@ PrefabInstance:
       value: FlyingEye
       objectReference: {fileID: 0}
     - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: dc4069ff44062b04d98f45da4bef0ce5, type: 3}
+    - target: {fileID: 7369517250337217348, guid: 48b78b3a7bfcb4141ab09e0f833cb9dc, type: 3}
       propertyPath: enemyName
       value: FlyingEye
       objectReference: {fileID: 0}
